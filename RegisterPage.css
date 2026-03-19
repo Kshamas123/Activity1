@@ -1,0 +1,70 @@
+.SignUp-Container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 20px;
+}
+
+.SignupBox {
+    width: 100%;
+    max-width: 700px; /* Standard width for login cards */
+    background-color: var(--axis-white);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.main-input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--axis-gray-light);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: 0.2s;
+}
+.main-input:focus {
+    border-color: var(--axis-black);
+    background-color: var(--axis-white);
+    outline: none;
+}
+.btn-secondary {
+    width: 100%;
+    background-color: var(--axis-gray-light);
+    border: none;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.full-width {
+    width: 100%;
+    border-radius: 8px;
+    background-color: var(--axis-black);
+    color: var(--axis-white);
+}
+/* Add this to your Signupuser.css */
+.SignupBox h1 {
+    font-size: var(--size-h2);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px; /* Creates clean space between each field */
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: var(--axis-gray-medium);
+}

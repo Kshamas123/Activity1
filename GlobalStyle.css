@@ -1,0 +1,51 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+:root {
+
+  --axis-black: #000000;
+  --axis-white: #ffffff;
+  --axis-gray-dark: #333333;
+  --axis-gray-medium: #545454;
+  --axis-gray-light: #f6f6f6;
+  --axis-blue: #276ef1;
+
+
+  --font-main: 'Inter', sans-serif;
+  
+
+  --size-logo: 60px;
+  --size-h1: 52px;
+  --size-h2: 28px;
+  --size-body: 16px;
+  --size-button: 14px;
+
+
+--button-text-weight:700;
+  --radius-small: 4px;
+  --shadow-subtle: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--axis-white);
+  color: var(--axis-black);
+  line-height: 1.6;
+}
+
+.Login-header {
+    background-color: var(--axis-black); 
+    color: var(--axis-white);
+    padding: 20px 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid var(--axis-blue); 
+}
