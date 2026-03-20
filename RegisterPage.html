@@ -148,9 +148,34 @@
         alert("file can be in jpg or jpeg format only")
         return false;
     }
+     const file = file_count.files[0]
+     const reader = new FileReader(); //file reader object
+        reader.readAsDataURL(file); //scans the image
 
-    location.href='Login.html'
+        //once the scanning is done this runs
+    reader.onloadend = function() {
+            const base64Image = reader.result; 
+
+            
+            const newStudent = {
+                s_name: Student_name,
+                s_rollno: Student_rollno,
+                s_email: Student_email,
+                s_phone: Student_no,
+                s_dob: Student_dob,
+                c_name: College_name,
+                s_password: Student_password,
+                s_img: base64Image 
+            };
+    const studentList = JSON.parse(localStorage.getItem('Student_list')) || [];
+            studentList.push(newStudent);
+            localStorage.setItem('Student_list', JSON.stringify(studentList));
+
+            alert("Registration successful!");
+            window.location.href = 'Login.html';
 }
+
+    }
     
 </script>
 </html>

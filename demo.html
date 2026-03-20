@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Click Demo</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        
+        /* CRITICAL: Map must have a defined height and width */
+        #map { 
+            height: 500px; 
+            width: 80%; 
+            border-radius: 12px; 
+            border: 2px solid #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .controls { margin-bottom: 20px; display: flex; gap: 10px; }
+        input { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 250px; }
+        .active { border: 2px solid #276ef1; outline: none; }
+    </style>
+</head>
+<body>
+
+    <h2>Axis Map Selection Demo</h2>
+    <p>Click a box, then click the map to set coordinates.</p>
+
+    <div class="controls">
+        <input type="text" id="pickup" placeholder="Click here, then map for Pickup" readonly>
+        <input type="text" id="drop" placeholder="Click here, then map for Drop" readonly>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        let map;
+        let activeInputId = 'pickup';
+        let pickupMarker, dropMarker;
+
+        // Set active input when user clicks the text box
+        document.getElementById('pickup').onclick = () => {
+            activeInputId = 'pickup';
+            updateStyles();
+        };
+        document.getElementById('drop').onclick = () => {
+            activeInputId = 'drop';
+            updateStyles();
+        };
+
+        function updateStyles() {
+            document.getElementById('pickup').className = activeInputId === 'pickup' ? 'active' : '';
+            document.getElementById('drop').className = activeInputId === 'drop' ? 'active' : '';
+        }
+
+        function initMap() {
+            // Initialize map (Centered on Bengaluru)
+            map = L.map('map').setView([12.9716, 77.5946], 13);
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // FIX: Force Leaflet to recalculate the container size
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 500);
+
+            // Handle Map Clicks
+           // 1. Change the click handler to 'async'
+map.on('click', async function(e) {
+    const lat = e.latlng.lat;
+    const lng = e.latlng.lng;
+
+    // 2. The API URL (Nominatim is free for small projects like Axis)
+   // Add &accept-language=en to the end of the URL
+const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&accept-language=en`;
+
+    try {
+        // 3. Fetch the data
+        const response = await fetch(url);
+        const data = await response.json();
+
+        // 4. Extract the address (Nominatim provides 'display_name')
+        const address = data.display_name;
+
+        // 5. Fill the active input with the NAME, not the numbers
+        document.getElementById(activeInputId).value = address;
+
+        // 6. Add marker as usual
+        if (pickupMarker) map.removeLayer(pickupMarker);
+        pickupMarker = L.marker([lat, lng]).addTo(map).bindPopup(address).openPopup();
+
+    } catch (error) {
+        console.error("Error fetching address:", error);
+        // Fallback to coordinates if the internet/API fails
+        document.getElementById(activeInputId).value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+    }
+});
+        }
+
+        // Run when page loads
+        window.onload = initMap;
+    </script>
+</body>
+</html>
