@@ -1,0 +1,122 @@
+
+
+/* Center the box on the screen */
+.Login-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
+    margin-top: 80px;
+}
+
+.Login-box {
+    width: 100%;
+    max-width: 450px; /* Standard width for login cards */
+    background-color: var(--axis-white);
+    padding: 40px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+
+.main-input {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--axis-gray-light);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: 0.2s;
+}
+
+.main-input:focus {
+    border-color: var(--axis-black);
+    background-color: var(--axis-white);
+    outline: none;
+}
+
+.signup-prompt {
+    margin-top: 15px;
+    font-size: 16px;
+    color: var(--axis-gray-medium);
+}
+
+.signup-prompt a {
+    color: var(--axis-black);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.signup-prompt a:hover {
+    border-bottom: 1px solid var(--axis-black);
+}
+
+
+
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--axis-gray-medium);
+    margin: 25px 0;
+    font-size: 16px;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.divider:not(:empty)::before { margin-right: .5em; }
+.divider:not(:empty)::after { margin-left: .5em; }
+
+.btn-secondary {
+    width: 100%;
+    background-color: var(--axis-gray-light);
+    border: none;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.footer-note {
+    font-size: 14px;
+    color: var(--axis-gray-medium);
+    margin-top: 25px;
+    line-height: 1.4;
+}
+.full-width {
+    width: 100%;
+    border-radius: 8px;
+    background-color: var(--axis-black);
+    color: var(--axis-white);
+}
+
+/* Add this to Login.css */
+.input-error {
+    border: 2px solid #E22121 !important; /* A professional red */
+    background-color: #FFF1F1 !important;
+}
+
+.error-text {
+    color: #E22121;
+    font-size: 12px;
+    margin-top: -15px; /* Pull it closer to the input */
+    margin-bottom: 15px;
+    display: none; /* Hidden by default */
+}

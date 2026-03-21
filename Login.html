@@ -1,19 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Axis</title>
+    <link rel="stylesheet" href="GlobalStyle.css">
+    <link rel="stylesheet" href="Login.css">
 </head>
+
 <body>
-    <div class="profile-card">
-    <img id="display_image" src="" alt="Student Profile" style="width:200px; height:200px; border-radius:50%;">
-    
-    <h2 id="display_name"></h2>
-    <p id="display_usn"></p>
-</div>
+    <header class="Login-header">
+        <h1>Digital Student ID Portal</h1>
+    </header>
+
+    <main class="Login-container">
+        <div class="Login-box">
+
+
+            <form>
+
+                <div class="input-group">
+                    <label for="Student_rollno">USN:</label>
+                    <input type="text" name="Student_rollno" id="Student_rollno" placeholder="Enter Your USN"
+                        class="main-input" autocomplete="off" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="Student_password">Password:</label>
+                    <input type="password" name="Student_password" id="Student_password"
+                        placeholder="Enter Your Password" class="main-input" autocomplete="off" required>
+                </div>
+
+                <button type="submit" class="btn-secondary full-width"
+                    onclick="GoToProfilePage(event)">Continue</button>
+            </form>
+            <p class="signup-prompt">New User? <a href="Signupuser.html">Create an account</a></p>
+
+
+    </main>
+    <script>
+        function GoToProfilePage(event) {
+            event.preventDefault()
+            const Student_rollno = document.getElementById('Student_rollno').value
+            const Student_password = document.getElementById('Student_password').value
+            const arr = JSON.parse(localStorage.getItem('Student_list')) || []
+            console.log(arr)
+            for (let i = 0; i < arr.length; i++) {
+                console.log(arr[i].s_rollno.toLowerCase())
+                console.log(Student_rollno.toLowerCase())
+                if (Student_rollno.toLowerCase() == arr[i].s_rollno.toLowerCase()) {
+                    console.log(arr[i].s_password)
+                    if (Student_password == arr[i].s_password) {
+                        alert("Login successful")
+                        const temp = arr[i]
+                        localStorage.setItem('current_user', JSON.stringify(temp))
+                        location.href = 'Profile.html'
+                        return;
+                    }
+                    else {
+                        alert("Incorrect password")
+                        document.getElementById('Student_rollno').value=""
+                        document.getElementById('Student_password').value=""
+                        return false;
+                    }
+                }
+            }
+            alert("No USN found")
+            document.getElementById('Student_rollno').value=""
+            document.getElementById('Student_password').value=""
+            return false;
+        }
+    </script>
 </body>
-<script>
-    
-</script>
+
 </html>
