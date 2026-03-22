@@ -3,9 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Portal Student</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="GlobalStyle.css">
+    <link rel="stylesheet" href="Profile.css">
 </head>
 <body>
-    <h1>Hello</h1>
+   <header class="Login-header">
+        <h1>Digital Student ID Portal</h1>
+    </header>
+    <main class="section">
+    <div class="id-card">
+        <div class="card-header">
+            <div id="student_college">College Name</div>
+        </div>
+        
+        <div class="card-body">
+            <div class="profile-section">
+                <img src="" alt="Student Photo" id="img-display">
+            </div>
+
+            <div class="detail-section">
+                <div id="student_name" >Name</div>
+                <input type="text" name="studentname" id="studentname" class="notshow">
+                <div id="student_rollno">USN</div>
+                <input type="text" name="studentrollno" id="studentrollno" class="notshow">
+                <div class="info-item">
+                    <label>Email</label>
+                    <div id="student_email"></div>
+                    <input type="email" name="studentemail" id="studentemail" class="notshow">
+                </div>
+                <div class="info-item">
+                    <label>Phone</label>
+                    <div id="student_phone"></div>
+                    <input type="text" name="studentphone" id="studentphone" class="notshow">
+                </div>
+                <div class="info-item">
+                    <label>DOB</label>
+                    <div id="student_dob"></div>
+                    <input type="date" name="studentdob" id="studentdob" class="notshow">
+                </div>
+            </div>
+        </div>
+         <button type="submit" class="btn-secondary full-width" onclick="editbtn(event)" >EDIT PROFILE</button>
+        
+        <div class="card-footer">
+            VERIFIED DIGITAL STUDENT ID |STUDENT PORTAL
+        </div>
+    </div>
+</main>
 </body>
+<script>
+    window.onload=function()
+    {
+        const img=document.getElementById('img-display')
+        const current_user=JSON.parse(localStorage.getItem('current_user'))
+        img.src=current_user.s_img
+        document.getElementById('student_name').innerText=current_user.s_name
+        document.getElementById('student_email').innerText=current_user.s_email
+        document.getElementById('student_phone').innerText=current_user.s_phone
+        document.getElementById('student_dob').innerText=current_user.s_dob
+        document.getElementById('student_rollno').innerText=current_user.s_rollno
+        document.getElementById('student_college').innerText=current_user.c_name
+    }
+    function editbtn(event)
+    {
+        event.preventDefault()
+        document.getElementById('student_name').classList.toggle('notshow')
+        document.getElementById('studentname').classList.toggle('notshow')
+    }
+</script>
 </html>

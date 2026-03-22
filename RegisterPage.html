@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axis</title>
+    <title>Portal Student</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="GlobalStyle.css">
     <link rel="stylesheet" href="RegisterPage.css">
@@ -167,7 +167,7 @@
                 s_password: Student_password,
                 s_img: base64Image 
             };
-    const studentList = JSON.parse(localStorage.getItem('Student_list')) || [];
+        const studentList = JSON.parse(localStorage.getItem('Student_list')) || [];
             studentList.push(newStudent);
             localStorage.setItem('Student_list', JSON.stringify(studentList));
 

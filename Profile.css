@@ -1,0 +1,151 @@
+/* Container to center the ID card on the page */
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+    background-color: var(--axis-gray-light);
+}
+
+/* The actual ID Card Styling */
+.id-card {
+    background: var(--axis-white);
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-subtle);
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Top bar of the card */
+.card-header {
+    background-color: var(--axis-black);
+    color: var(--axis-white);
+    padding: 15px;
+    text-align: center;
+    border-bottom: 4px solid var(--axis-blue);
+}
+
+#student_college {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Card Body Layout */
+.card-body {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Profile Image Styling */
+.profile-section {
+    margin-bottom: 20px;
+}
+
+#img-display {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: fill;
+    border: 3px solid var(--axis-blue);
+    background-color: #eee;
+}
+
+/* Detail Section Styling */
+.detail-section {
+    width: 100%;
+    text-align: center;
+}
+
+#student_name {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    color: var(--axis-black);
+}
+
+#student_rollno {
+    font-weight: 700;
+    color: var(--axis-blue);
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.notshow{
+    display: none;
+}
+
+
+/* Grid for the small info bits */
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+}
+
+.info-item label {
+    font-weight: 700;
+    color: var(--axis-gray-medium);
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.info-item div {
+    font-weight: 500;
+    color: var(--axis-black);
+}
+
+/* Footer of the card */
+.card-footer {
+    background: #fafafa;
+    padding: 10px;
+    text-align: center;
+    font-size: 10px;
+    color: #999;
+}
+
+.btn-secondary {
+    width: 50%;
+    background-color: var(--axis-gray-light);
+    border: none;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.btn-secondary {
+    width: 50%;
+    background-color: var(--axis-gray-light);
+    border: none;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    border-radius: 8px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; */
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 25%;
+}
+.full-width {
+    /* width: 50%; */
+    border-radius: 8px;
+    background-color: var(--axis-black);
+    color: var(--axis-white);
+}
