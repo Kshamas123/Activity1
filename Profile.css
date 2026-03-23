@@ -149,3 +149,42 @@
     background-color: var(--axis-black);
     color: var(--axis-white);
 }
+
+/* Style for inputs when they are shown */
+.detail-section input {
+    width: 90%;
+    padding: 8px 12px;
+    margin: 5px 0;
+    border: 1px solid var(--axis-blue);
+    border-radius: 6px;
+    font-family: var(--font-main);
+    font-size: 14px;
+    text-align: center; /* Centers text like the original labels */
+    outline: none;
+    background-color: var(--axis-gray-light);
+}
+
+/* Specific styling for the Name input to keep it big */
+#studentname {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Adjust info-item inputs to align right */
+.info-item input {
+    width: 60%;
+    text-align: left;
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+/* Save Button styling */
+#save-btn {
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#save-btn:hover {
+    background-color: var(--axis-gray-dark);
+}

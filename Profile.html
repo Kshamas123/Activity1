@@ -45,7 +45,8 @@
                 </div>
             </div>
         </div>
-         <button type="submit" class="btn-secondary full-width" onclick="editbtn(event)" >EDIT PROFILE</button>
+         <button type="submit" class="btn-secondary full-width" id="edit-btn" onclick="editbtn(event)" >EDIT PROFILE</button>
+         <button type="submit" class="notshow" id="save-btn" onclick="savebtn(event)" >SAVE CHANGES</button>
         
         <div class="card-footer">
             VERIFIED DIGITAL STUDENT ID |STUDENT PORTAL
@@ -69,8 +70,96 @@
     function editbtn(event)
     {
         event.preventDefault()
+        const student_name=document.getElementById('student_name').innerText
         document.getElementById('student_name').classList.toggle('notshow')
         document.getElementById('studentname').classList.toggle('notshow')
+
+        const student_email=document.getElementById('student_email').innerText
+        document.getElementById('student_email').classList.toggle('notshow')
+        document.getElementById('studentemail').classList.toggle('notshow')
+
+        const student_phone=document.getElementById('student_phone').innerText
+        document.getElementById('student_phone').classList.toggle('notshow')
+        document.getElementById('studentphone').classList.toggle('notshow')
+
+        const student_dob=document.getElementById('student_dob').innerText
+        document.getElementById('student_dob').classList.toggle('notshow')
+        document.getElementById('studentdob').classList.toggle('notshow')
+
+        const student_rollno=document.getElementById('student_rollno').innerText
+        document.getElementById('student_rollno').classList.toggle('notshow')
+        document.getElementById('studentrollno').classList.toggle('notshow')
+
+        document.getElementById('studentname').value=document.getElementById('student_name').innerText
+        document.getElementById('studentemail').value=document.getElementById('student_email').innerText
+        document.getElementById('studentphone').value=document.getElementById('student_phone').innerText
+        document.getElementById('studentdob').value=document.getElementById('student_dob').innerText
+        document.getElementById('studentrollno').value=document.getElementById('student_rollno').innerText
+
+        const savebtn=document.getElementById('save-btn')
+        savebtn.classList.toggle('notshow')
+        savebtn.classList.toggle('full-width')
+        savebtn.classList.toggle('btn-secondary')
+
+        const editbtn=document.getElementById('edit-btn')
+        editbtn.classList.toggle('notshow')
+        editbtn.classList.toggle('full-width')
+        editbtn.classList.toggle('btn-secondary')
+    }
+    function savebtn(event){
+        event.preventDefault()
+        const studentname=document.getElementById('studentname').value
+        document.getElementById('student_name').classList.toggle('notshow')
+        document.getElementById('studentname').classList.toggle('notshow')
+
+        const studentemail=document.getElementById('studentemail').value
+        document.getElementById('student_email').classList.toggle('notshow')
+        document.getElementById('studentemail').classList.toggle('notshow')
+
+        const studentphone=document.getElementById('studentphone').value
+        document.getElementById('student_phone').classList.toggle('notshow')
+        document.getElementById('studentphone').classList.toggle('notshow')
+
+         const studentdob=document.getElementById('studentdob').value
+        document.getElementById('student_dob').classList.toggle('notshow')
+        document.getElementById('studentdob').classList.toggle('notshow')
+
+        const studentrollno=document.getElementById('studentrollno').value
+        document.getElementById('student_rollno').classList.toggle('notshow')
+        document.getElementById('studentrollno').classList.toggle('notshow')
+
+        document.getElementById('student_name').innerText=document.getElementById('studentname').value
+        document.getElementById('student_email').innerText=document.getElementById('studentemail').value
+        document.getElementById('student_phone').innerText=document.getElementById('studentphone').value
+        document.getElementById('student_dob').innerText= document.getElementById('studentdob').value
+        document.getElementById('student_rollno').innerText=document.getElementById('studentrollno').value
+
+        const student_list=JSON.parse(localStorage.getItem('Student_list'))
+        const index=localStorage.getItem('index')
+        student_list[index].s_name=studentname
+        student_list[index].s_dob=studentdob
+        student_list[index].s_email=studentemail
+        student_list[index].s_phone=studentphone
+        student_list[index].s_rollno=studentrollno
+
+        localStorage.setItem('Student_list',JSON.stringify(student_list))
+        const current_user=JSON.parse(localStorage.getItem('current_user'))
+        current_user.s_name=studentname
+        current_user.s_dob=studentdob
+        current_user.s_email=studentemail
+        current_user.s_phone=studentphone
+        current_user.s_rollno=studentrollno
+
+        localStorage.setItem('current_user',JSON.stringify(current_user)) 
+        const savebtn=document.getElementById('save-btn')
+        savebtn.classList.toggle('notshow')
+        savebtn.classList.toggle('full-width')
+        savebtn.classList.toggle('btn-secondary')
+
+        const editbtn=document.getElementById('edit-btn')
+        editbtn.classList.toggle('notshow')
+        editbtn.classList.toggle('full-width')
+        editbtn.classList.toggle('btn-secondary')
     }
 </script>
 </html>

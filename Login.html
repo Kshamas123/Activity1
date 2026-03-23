@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axis</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" href="image.png">
     <link rel="stylesheet" href="GlobalStyle.css">
     <link rel="stylesheet" href="Login.css">
 </head>
@@ -35,7 +37,7 @@
                 <button type="submit" class="btn-secondary full-width"
                     onclick="GoToProfilePage(event)">Continue</button>
             </form>
-            <p class="signup-prompt">New User? <a href="Signupuser.html">Create an account</a></p>
+            <p class="signup-prompt">New User? <a href="RegisterPage.html">Create an account</a></p>
 
 
     </main>
@@ -55,6 +57,7 @@
                         alert("Login successful")
                         const temp = arr[i]
                         localStorage.setItem('current_user', JSON.stringify(temp))
+                        localStorage.setItem('index',i)
                         location.href = 'Profile.html'
                         return;
                     }
