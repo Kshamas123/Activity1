@@ -47,6 +47,8 @@
 /* Profile Image Styling */
 .profile-section {
     margin-bottom: 20px;
+    position: relative;/* Crucial: This lets us position the button inside */
+    display: inline-block;
 }
 
 #img-display {
@@ -187,4 +189,84 @@
 
 #save-btn:hover {
     background-color: var(--axis-gray-dark);
+}
+
+.edit-photo-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    background-color: var(--axis-blue);
+    color: white;
+    border: 2px solid white; /* Makes it pop against the photo */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.edit-photo-btn:hover {
+    transform: scale(1.1);
+    background-color: var(--axis-black);
+}
+
+/* Make sure the icon itself is styled */
+.fa-pen {
+    pointer-events: none; /* Prevents the icon from blocking clicks on the button */
+}
+
+/* Container for Save/Cancel buttons under the image */
+#edit-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Base style for both small buttons */
+.btn-save, .btn-cancel {
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+/* Save Button: Axis Blue */
+.btn-save {
+    background-color: var(--axis-blue);
+    color: white;
+    border: none;
+}
+
+.btn-save:hover {
+    background-color: #1a56c5; /* Slightly darker blue */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Cancel Button: Neutral Gray */
+.btn-cancel {
+    background-color: white;
+    color: var(--axis-gray-medium);
+    border: 1px solid var(--axis-gray-medium);
+}
+
+.btn-cancel:hover {
+    background-color: var(--axis-gray-light);
+    color: var(--axis-black);
+}
+
+/* Styling the actual File Input to look cleaner */
+#Student_Photo {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--axis-gray-medium);
+    width: 100%;
 }

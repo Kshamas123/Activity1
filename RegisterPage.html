@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,174 +9,196 @@
     <link rel="stylesheet" href="GlobalStyle.css">
     <link rel="stylesheet" href="RegisterPage.css">
 </head>
+
 <body>
-   <header class="Login-header">
+    <header class="Login-header">
         <h1>Digital Student ID Portal</h1>
     </header>
-     <main class="SignUp-Container">
+    <main class="SignUp-Container">
         <div class="SignupBox">
             <h1><i class="fa-solid fa-user"></i> Fill your Personal Details</h1>
-            
+
             <form>
                 <div class="input-group">
                     <label for="Student_name">Full Name:</label>
-                    <input type="text" name="Student_name" id="Student_name" placeholder="Enter Your  Name" class="main-input"  autocomplete="off" required>
+                    <input type="text" name="Student_name" id="Student_name" placeholder="Enter Your  Name"
+                        class="main-input" autocomplete="off" required>
                 </div>
 
                 <div class="input-group">
                     <label for="Student_rollno">USN:</label>
-                    <input type="text" name="Student_rollno" id="Student_rollno" placeholder="Enter Your USN" class="main-input"  autocomplete="off" required>
+                    <input type="text" name="Student_rollno" id="Student_rollno" placeholder="Enter Your USN"
+                        class="main-input" autocomplete="off" required>
                 </div>
 
                 <div class="input-group">
                     <label for="Student_email">Personal Email:</label>
-                    <input type="email" name="Student_email" id="Student_email" placeholder="Enter Your Email" class="main-input"  autocomplete="off" required>
+                    <input type="email" name="Student_email" id="Student_email" placeholder="Enter Your Email"
+                        class="main-input" autocomplete="off" required>
                 </div>
 
                 <div class="input-group">
                     <label for="Student_no">Phone Number:</label>
-                    <input type="text" name="Student_no" id="Student_no" placeholder="Enter Your Phone Number" class="main-input"  autocomplete="off" required>
+                    <input type="text" name="Student_no" id="Student_no" placeholder="Enter Your Phone Number"
+                        class="main-input" autocomplete="off" required>
                 </div>
 
                 <div class="input-group">
                     <label for="Student_dob">DOB:</label>
-                    <input type="date" name="Student_dob" id="Student_dob"  class="main-input"  autocomplete="off" required>
+                    <input type="date" name="Student_dob" id="Student_dob" class="main-input" autocomplete="off"
+                        required>
                 </div>
 
                 <div class="input-group">
                     <label for="cars">Choose a College:</label>
-  <select id="College_name" name="College_name" class="main-input" autocomplete="off">
-    <option value="Select a College">Select a College</option>
-    <option value="RV College of Engineering">RV College of Engineering</option>
-    <option value="BMS College of Engineering">BMS College of Engineering</option>
-    <option value="Ramaiah Institute of Technology">Ramaiah Institute of Technology</option>
-    <option value="Bangalore Institute of Technology">Bangalore Institute of Technology</option>
-    <option value="Dayananda Sagar College of Engineering">Dayananda Sagar College of Engineering</option>
-    <option value="National Institute of Technology, Surathkal">National Institute of Technology, Surathkal</option>
-    <option value="National Institute of Engineering, Mysore">National Institute of Engineering, Mysore</option>
-  </select>
+                    <select id="College_name" name="College_name" class="main-input" autocomplete="off">
+                        <option value="Select a College">Select a College</option>
+                        <option value="RV College of Engineering">RV College of Engineering</option>
+                        <option value="BMS College of Engineering">BMS College of Engineering</option>
+                        <option value="Ramaiah Institute of Technology">Ramaiah Institute of Technology</option>
+                        <option value="Bangalore Institute of Technology">Bangalore Institute of Technology</option>
+                        <option value="Dayananda Sagar College of Engineering">Dayananda Sagar College of Engineering
+                        </option>
+                        <option value="National Institute of Technology, Surathkal">National Institute of Technology,
+                            Surathkal</option>
+                        <option value="National Institute of Engineering, Mysore">National Institute of Engineering,
+                            Mysore</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
-                      <label for="Student_img">Profile Image:</label>
-                      <input type="file" name="Student_img" id="Student_img" class="main-input"  autocomplete="off" required>
+                    <label for="Student_img">Profile Image:</label>
+                    <input type="file" name="Student_img" id="Student_img" class="main-input" autocomplete="off"
+                        required>
                 </div>
 
                 <div class="input-group">
                     <label for="Student_password">Password:</label>
-                    <input type="password" name="Student_password" id="Student_password" placeholder="Enter Your Password" class="main-input"  autocomplete="off" required>
+                    <input type="password" name="Student_password" id="Student_password"
+                        placeholder="Enter Your Password" class="main-input" autocomplete="off" required>
                 </div>
 
                 <button type="submit" class="btn-secondary full-width" onclick="GotoLoginPage(event)">Continue</button>
             </form>
-            </div>
+        </div>
     </main>
 </body>
 <script>
-    function GotoLoginPage(event)
-    {
+    function GotoLoginPage(event) {
         event.preventDefault();
-        const Student_name=document.getElementById('Student_name').value
-        const Student_rollno=document.getElementById('Student_rollno').value
-        const Student_email=document.getElementById('Student_email').value
-        const Student_no=document.getElementById('Student_no').value
-        const Student_dob=document.getElementById('Student_dob').value
-        const file_count=document.getElementById('Student_img')
-        const Student_password=document.getElementById('Student_password').value
-        const College_name=document.getElementById('College_name').value
+        const Student_name = document.getElementById('Student_name').value
+        const Student_rollno = document.getElementById('Student_rollno').value
+        const Student_email = document.getElementById('Student_email').value
+        const Student_no = document.getElementById('Student_no').value
+        const Student_dob = document.getElementById('Student_dob').value
+        const file_count = document.getElementById('Student_img')
+        const Student_password = document.getElementById('Student_password').value
+        const College_name = document.getElementById('College_name').value
 
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const normalizedphone = Student_no.replace(/[^0-9+]/g, '');
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-        const date=new Date();
-        date.setHours(0,0,0,0)
-        const inputdate=new Date(Student_dob)
-        inputdate.setHours(0,0,0,0)
-        
-        
-        const filename=document.getElementById('Student_img').value
-        const lastDotIndex = filename.lastIndexOf('.');
-        const extension = filename.substring(lastDotIndex + 1).toLowerCase();
+        const date = new Date();
+        date.setHours(0, 0, 0, 0)
+        const inputdate = new Date(Student_dob)
+        inputdate.setHours(0, 0, 0, 0)
 
-        
-        
-    //check for empty fields
-    if(Student_name.length<=0 || Student_email.length<=0 || Student_dob.length<=0 ||normalizedphone.length<=0 ||Student_rollno.length<=0 || file_count.files.length===0 || Student_password.length<=0 )
-    {
-        alert("All the Fields must be filled")
-        return false;
-    }
-    
-    //check for whether the college is selected
-    if(College_name==="Select a College")
-     {
-        alert("Select a college")
-        return false;
-    }
 
-    //check for valid email
-    if(!emailPattern.test(Student_email))
-    {
-        alert("Enter a valid email")
-        return false;
-    }
 
-    //check for valid phone number
-    if(normalizedphone.length<10)
-    {
-        alert("Enter a valid number")
-        return false;
-    }
 
-    //check for valid password
-    if(!regex.test(Student_password))
-    {
-        alert("The password is not valid , should be atleast of 8 characters having at least one lower case letter ,uppercase ,digits and special symbol")
-        return false;
-    }
 
-    //check if dob is valid 
-    if(date.getTime()===inputdate.getTime() || date.getFullYear()-inputdate.getFullYear()<18)
-    {
-        alert("Age should be atleast 18")
-        return false;
-    }
 
-    //check for file format
-    if(extension!="jpg" && extension!="jpeg")
-    {
-        alert("file can be in jpg or jpeg format only")
-        return false;
-    }
-     const file = file_count.files[0]
-     const reader = new FileReader(); //file reader object
-        reader.readAsDataURL(file); //scans the image
+        //check for empty fields
+        if (Student_name.length <= 0 || Student_email.length <= 0 || Student_dob.length <= 0 || normalizedphone.length <= 0 || Student_rollno.length <= 0 || file_count.files.length === 0 || Student_password.length <= 0) {
+            alert("All the Fields must be filled")
+            return false;
+        }
 
-        //once the scanning is done this runs
-    reader.onloadend = function() {
-            const base64Image = reader.result; 
+        //check for whether the college is selected
+        if (College_name === "Select a College") {
+            alert("Select a college")
+            return false;
+        }
 
-            
-            const newStudent = {
-                s_name: Student_name,
-                s_rollno: Student_rollno,
-                s_email: Student_email,
-                s_phone: Student_no,
-                s_dob: Student_dob,
-                c_name: College_name,
-                s_password: Student_password,
-                s_img: base64Image 
-            };
-        const studentList = JSON.parse(localStorage.getItem('Student_list')) || [];
-            studentList.push(newStudent);
-            localStorage.setItem('Student_list', JSON.stringify(studentList));
+        //check for valid email
+        if (!emailPattern.test(Student_email)) {
+            alert("Enter a valid email")
+            return false;
+        }
 
-            alert("Registration successful!");
-            window.location.href = 'Login.html';
-}
+        //check for valid phone number
+        if (normalizedphone.length < 10) {
+            alert("Enter a valid number")
+            return false;
+        }
 
-    }
-    
+        //check for valid password
+        if (!regex.test(Student_password)) {
+            alert("The password is not valid , should be atleast of 8 characters having at least one lower case letter ,uppercase ,digits and special symbol")
+            return false;
+        }
+
+        //check if dob is valid 
+        if (date.getTime() === inputdate.getTime() || date.getFullYear() - inputdate.getFullYear() < 18) {
+            alert("Age should be atleast 18")
+            return false;
+        }
+
+        // const filename=document.getElementById('Student_img').value
+        // const lastDotIndex = filename.lastIndexOf('.');
+        // const extension = filename.substring(lastDotIndex + 1).toLowerCase();
+        //check for file format
+        // if(extension!="jpg" && extension!="jpeg")
+        // {
+        //     alert("file can be in jpg or jpeg format only")
+        //     return false;
+        // }
+
+        const fileInput = document.getElementById('Student_img');
+        const file = fileInput.files[0]; // Get the actual file object
+
+        if (file) {
+            const fileName = file.name;
+            const fileType = file.type; // e.g., "image/jpeg"
+
+            // Check by MIME type (more reliable than just the extension)
+            if (fileType !== "image/jpeg" && fileType !== "image/jpg") {
+                alert("Please upload a JPG or JPEG image only.");
+                fileInput.value = ""; // Clear the invalid selection
+                return false;
+            }
+        }
+
+            //  const file = file_count.files[0]
+            const reader = new FileReader(); //file reader object
+            reader.readAsDataURL(file); //scans the image
+
+            //once the scanning is done this runs
+            reader.onloadend = function () {
+                const base64Image = reader.result;
+
+
+                const newStudent = {
+                    s_name: Student_name,
+                    s_rollno: Student_rollno,
+                    s_email: Student_email,
+                    s_phone: Student_no,
+                    s_dob: Student_dob,
+                    c_name: College_name,
+                    s_password: Student_password,
+                    s_img: base64Image
+                };
+                const studentList = JSON.parse(localStorage.getItem('Student_list')) || [];
+                studentList.push(newStudent);
+                localStorage.setItem('Student_list', JSON.stringify(studentList));
+
+                alert("Registration successful!");
+                window.location.href = 'Login.html';
+            }
+
+        }
+
 </script>
+
 </html>
