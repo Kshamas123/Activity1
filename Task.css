@@ -1,0 +1,266 @@
+/* Main Container */
+.Task-container {
+    padding: 0 40px 40px 40px; /* Consistent side padding */
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--axis-white);
+}
+
+/* Header Actions Bar */
+.Task-header-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--axis-gray-light); /* Subtle separator */
+    margin-bottom: 30px;
+}
+
+/* Axis Primary Button - Refined */
+.axis-btn-primary {
+    background-color: var(--axis-black);
+    color: var(--axis-white);
+    font-family: var(--font-main);
+    font-size: var(--size-button);
+    font-weight: var(--button-text-weight);
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--radius-small);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.axis-btn-primary:hover {
+    background-color: var(--axis-blue); /* Axis blue on hover looks more "pro" */
+    box-shadow: var(--shadow-subtle);
+}
+
+.axis-btn-primary:active {
+    transform: scale(0.96);
+}
+
+/* Center the Empty State */
+.Task-section-box {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 0.8s ease; /* Smooth entrance */
+}
+
+.Task-section-box img {
+    width: 180px;
+    margin-bottom: 24px;
+    filter: grayscale(100%);
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+}
+
+/* Subtle interaction: Image lights up when you're ready to add */
+.Task-section-box:hover img {
+    opacity: 0.7;
+}
+
+.Task-section-box h2 {
+    font-size: var(--size-h2);
+    font-weight: 900; /* Matching Inter Black weight */
+    color: var(--axis-black);
+    margin-bottom: 12px;
+}
+
+.Task-section-box p {
+    font-size: var(--size-body);
+    color: var(--axis-gray-medium);
+    max-width: 300px;
+}
+
+/* Utilities */
+.disabled-section {
+    display: none !important;
+}
+
+/* Blur Effect */
+.blur {
+    filter: blur(8px);
+    pointer-events: none; /* Prevents clicking things behind the modal */
+    user-select: none;
+}
+
+/* Overlay Background */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2); /* Keep it light so the blur shows through */
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* The Form Box */
+.form-box {
+    background: var(--axis-white);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: var(--radius-small);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    border-top: 4px solid var(--axis-blue); /* Axis Blue accent line */
+    animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-box h2 {
+    font-size: var(--size-h2);
+    font-weight: 900;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+}
+
+/* Input Styling */
+.main-input {
+    margin-bottom: 20px;
+}
+
+.main-input label {
+    display: block;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--axis-gray-dark);
+}
+
+.main-input input[type="text"],
+.main-input input[type="date"],
+.main-input textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--axis-gray-light);
+    border-radius: var(--radius-small);
+    font-family: var(--font-main);
+    transition: border-color 0.2s;
+}
+
+.main-input input:focus {
+    outline: none;
+    border-color: var(--axis-blue);
+}
+
+/* Priority Checkbox/Radio Styling */
+.main-input input[type="radio"] {
+    margin-right: 10px;
+    accent-color: var(--axis-blue);
+}
+
+/* Form Buttons */
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-submit {
+    background: var(--axis-black);
+    color: var(--axis-white);
+    padding: 12px 24px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    flex: 2;
+}
+
+.btn-close {
+    background: var(--axis-gray-light);
+    color: var(--axis-black);
+    padding: 12px 24px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    flex: 1;
+}
+
+@keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container for the toggle and text */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* The switch container */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+/* Hide default checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--axis-gray-light);
+    transition: .4s;
+    border-radius: 34px;
+    border: 1px solid #ccc;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* When checked: Blue background */
+input:checked + .slider {
+    background-color: var(--axis-blue);
+    border-color: var(--axis-blue);
+}
+
+/* Move the circle when checked */
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* Label text next to toggle */
+.toggle-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--axis-gray-dark);
+    cursor: pointer;
+}
