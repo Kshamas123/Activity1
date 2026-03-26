@@ -264,3 +264,143 @@ input:checked + .slider:before {
     color: var(--axis-gray-dark);
     cursor: pointer;
 }
+/* Container: Modern Flex-Grid */
+.task-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+/* Base Card: The "Glass" Look */
+.task-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px); /* Glassmorphism */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px; /* Smoother, modern corners */
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Ultra-smooth exit */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--axis-black);
+    
+}
+
+/* Mesh Gradient Background for Normal Tasks */
+.task-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(39, 110, 241, 0.04) 0%, transparent 50%);
+    z-index: -1;
+    transition: 0.6s ease;
+}
+
+/* Hover: The "Lift & Glow" */
+.task-card:hover {
+    transform: translateY(-12px) scale(1.01);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 25px 50px rgba(39, 110, 241, 0.12);
+    border-color: rgba(39, 110, 241, 0.3);
+}
+
+/* Priority Card: The "Axis Pro" Look */
+.task-card.priority-task {
+    background: linear-gradient(135deg, rgba(115, 158, 239, 0.08) 0%, rgba(255, 255, 255, 0.8) 100%);
+    border-right: 10px solid var(--axis-blue); /* Thicker for impact */
+    border-left: 1px solid rgba(39, 110, 241, 0.2);
+}
+
+/* Floating Priority Badge */
+.priority-badge {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: var(--axis-blue);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 5px 12px;
+    border-radius: 50px; /* Capsule shape */
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 10px rgba(39, 110, 241, 0.3);
+    animation: floating 3s ease-in-out infinite;
+}
+
+/* Typography Refinement */
+.task-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--axis-black);
+    margin-top: 10px;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.task-desc {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* Footer & Tools */
+.task-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 20px;
+}
+
+/* Deadline with Neon Dot */
+.task-deadline {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--axis-black);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-deadline::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #00d26a; /* Success Green Dot */
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00d26a; /* Glow */
+}
+
+/* The "Complete" Button */
+.delete-btn {
+    background: var(--axis-black);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background: var(--axis-blue);
+    transform: scale(1.05);
+}
+
+/* Unique Animations */
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
