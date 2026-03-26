@@ -1,0 +1,49 @@
+.Analysis-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+}
+
+.stats-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stat-card {
+    padding: 25px;
+    border-radius: 16px;
+    color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.stat-card.blue { background: linear-gradient(135deg, #276ef1, #609aff); }
+.stat-card.green { background: linear-gradient(135deg, #00d26a, #27e78d); }
+.stat-card.red { background: linear-gradient(135deg, #ff4d4d, #ff8585); }
+
+.charts-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.chart-box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: var(--axis-blue);
+    font-weight: 700;
+    margin-right: 20px;
+}

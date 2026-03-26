@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axis</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" href="image.png">
     <link rel="stylesheet" href="GlobalStyle.css">
@@ -21,7 +22,22 @@
         <div class="Task-header-actions">
             <button id="addTaskBtn" class="axis-btn-primary" onclick="disablebtn()">+ Add New Task</button>
         </div>
-
+<div class="task-filter-container">
+    <div class="filter-group">
+        <button class="filter-btn active" id="view-all" onclick="alltaskdisplay()">
+            <i class="fa-solid fa-list-ul"></i> All Tasks
+        </button>
+        <button class="filter-btn" id="view-active" onclick="filterTasks('pending')">
+            <i class="fa-solid fa-arrow-trend-up"></i> Active
+        </button>
+        <button class="filter-btn" id="view-completed" onclick="filterTasks('completed')">
+            <i class="fa-solid fa-check-double"></i> Done
+        </button>
+    </div>
+    <div class="task-count-badge">
+        <span id="task-counter">0</span> Tasks
+    </div>
+</div>
         <div id="taskList" class="task-list-container"></div>
 
         <div id="Notaskdiv" class="Task-section-box">

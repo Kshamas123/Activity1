@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis | Analysis Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="GlobalStyle.css">
+    <link rel="stylesheet" href="Analysis.css">
+</head>
+<body>
+    <header class="Login-header">
+        <div class="header-content">
+            <a href="Task.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Tasks</a>
+            <h1>Performance Analysis</h1>
+        </div>
+    </header>
+
+    <main class="Analysis-container">
+        <div class="grid-layout">
+            <div class="stats-sidebar">
+                <div class="stat-card blue">
+                    <h3 id="total-tasks">0</h3>
+                    <p>Total Tasks</p>
+                </div>
+                <div class="stat-card green">
+                    <h3 id="completed-tasks">0</h3>
+                    <p>Completed</p>
+                </div>
+                <div class="stat-card red">
+                    <h3 id="overdue-tasks">0</h3>
+                    <p>Overdue</p>
+                </div>
+            </div>
+
+            <div class="charts-main">
+                <div class="chart-box">
+                    <h3>Task Distribution</h3>
+                    <canvas id="distributionChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h3>Priority vs Normal</h3>
+                    <canvas id="priorityChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="Analysis.js"></script>
+</body>
+</html>

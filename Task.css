@@ -315,7 +315,6 @@ input:checked + .slider:before {
 .task-card.priority-task {
     background: linear-gradient(135deg, rgba(115, 158, 239, 0.08) 0%, rgba(255, 255, 255, 0.8) 100%);
     border-right: 10px solid var(--axis-blue); /* Thicker for impact */
-    border-left: 1px solid rgba(39, 110, 241, 0.2);
 }
 
 /* Floating Priority Badge */
@@ -353,12 +352,11 @@ input:checked + .slider:before {
 
 /* Footer & Tools */
 .task-footer {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
+   display: flex;
     justify-content: space-between;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    padding-top: 20px;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 15px;
 }
 
 /* Deadline with Neon Dot */
@@ -375,27 +373,59 @@ input:checked + .slider:before {
     content: "";
     width: 10px;
     height: 10px;
-    background: #00d26a; /* Success Green Dot */
+    background: #1ac4e6; /* Success Green Dot */
     border-radius: 50%;
     box-shadow: 0 0 10px #00d26a; /* Glow */
 }
 
-/* The "Complete" Button */
-.delete-btn {
-    background: var(--axis-black);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
+.footer-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Base style for all footer buttons */
+.action-btn {
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    font-family: var(--font-main);
+    border-radius: 6px;
+}
+
+/* Edit Button specific style */
+.edit-btn {
+    background: var(--axis-black);
+    border: 1px solid var(--axis-gray-light);
+    color: var(--axis-white);
+    padding: 8px;
+    font-size: 14px;
+}
+
+.edit-btn:hover {
+    border-color: var(--axis-blue);
+    color: var(--axis-blue);
+    background-color: rgba(39, 110, 241, 0.05);
+}
+
+/* Done and Delete (using your existing delete-btn styles) */
+.delete-btn, .done-btn {
+    background: var(--axis-black);
+    border: 1px solid var(--axis-gray-light);
+    color: var(--axis-white);
+    padding: 6px 12px;
+    font-size: 12px;
 }
 
 .delete-btn:hover {
-    background: var(--axis-blue);
-    transform: scale(1.05);
+    background: var(--axis-white); /* Red for delete */
+    color: var(--axis-black);
+    border-color:var(--axis-gray-dark)
+}
+
+.done-btn:hover {
+     background: var(--axis-white); /* Red for delete */
+    color: var(--axis-black);
+    border-color:var(--axis-gray-dark)
 }
 
 /* Unique Animations */
@@ -403,4 +433,108 @@ input:checked + .slider:before {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-5px); }
     100% { transform: translateY(0px); }
+}
+/* Overdue Card Style */
+/* .task-card.overdue-task {
+    border: 1px solid rgba(255, 77, 77, 0.3);
+    background: linear-gradient(135deg, rgba(255, 77, 77, 0.05) 0%, #ffffff 100%);
+    box-shadow: 0 10px 30px rgba(255, 77, 77, 0.08);
+}
+
+/* Overdue Badge */
+.overdue-badge {
+
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: var(--axis-blue);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 5px 12px;
+    border-radius: 50px; /* Capsule shape */
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 10px rgba(39, 110, 241, 0.3);
+    animation: floating 3s ease-in-out infinite;
+} */
+
+/* Change the Neon Dot to Red for Overdue tasks */
+.task-card.overdue-task .task-deadline::before {
+    background: #ff4d4d;
+    box-shadow: 0 0 10px #ff4d4d;
+}
+
+/* Shake Animation on Hover for Overdue Tasks */
+.task-card.overdue-task:hover {
+    animation: subtle-shake 0.4s ease-in-out;
+    border-color: #ff4d4d;
+}
+/* Update your Overdue Card with this matching Amber */
+.task-card.overdue-task {
+    /* Use a very faint orange tint for the background */
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.05) 0%, #ffffff 100%);
+    /* Use a solid Amber border on the right or left */
+    border-right: 8px solid #FF8C00; 
+
+}
+
+.overdue-badge {
+    background: #FF8C00; /* Dark Orange / Amber */
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
+}
+
+.task-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--axis-gray-light);
+}
+
+.filter-group {
+    display: flex;
+    background: #f1f3f9;
+    padding: 5px;
+    border-radius: 12px;
+    gap: 5px;
+}
+
+.filter-btn {
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+    color: var(--axis-gray-dark);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.active {
+    background: var(--axis-white);
+    color: var(--axis-blue);
+    box-shadow: 0 4px 12px rgba(39, 110, 241, 0.15);
+}
+
+.task-count-badge {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--axis-blue);
+    background: rgba(39, 110, 241, 0.1);
+    padding: 6px 15px;
+    border-radius: 50px;
+}
+
+@keyframes subtle-shake {
+    0% { transform: translateX(0) translateY(-12px); }
+    25% { transform: translateX(3px) translateY(-12px); }
+    50% { transform: translateX(-3px) translateY(-12px); }
+    75% { transform: translateX(3px) translateY(-12px); }
+    100% { transform: translateX(0) translateY(-12px); }
 }
