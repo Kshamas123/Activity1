@@ -8,7 +8,9 @@ function disablebtn() {
 function closeForm(event) {
     if (event) event.preventDefault();
     document.getElementById('overlay').style.display = "none";
+    document.getElementById('overlay_2').style.display = "none";
     document.getElementById('maincontainer').classList.remove('blur');
+    sessionStorage.removeItem('current_edit_task_id')
 }
 
 // Save Task to LocalStorage
@@ -55,6 +57,7 @@ function Savetask(event) {
 
     const task_array = JSON.parse(localStorage.getItem(current_user.s_rollno)) || [];
     task_array.push(newTask);
+    document.getElementById('task-counter').innerText = task_array.length
     localStorage.setItem(current_user.s_rollno, JSON.stringify(task_array));
 
     displaytask(newTask);
@@ -94,6 +97,8 @@ function displaytask(task) {
 
     taskList.appendChild(card);
 }
+
+
 function alltaskdisplay() {
     const ele = document.getElementById('view-all')
     ele.classList.add('active')
@@ -111,6 +116,8 @@ function alltaskdisplay() {
     }
 
 }
+
+//function to filter task and display
 function filterTasks(taskstatus) {
     let count = 0;
     if (taskstatus === "pending") {
@@ -150,6 +157,7 @@ function filterTasks(taskstatus) {
     }
 }
 
+//function that displays all task when window is loaded
 function onloaddisplaytask(task) {
     document.getElementById('Notaskdiv').classList.add('disabled-section');
     const taskList = document.getElementById('taskList');
@@ -183,7 +191,7 @@ function onloaddisplaytask(task) {
                 ${task.deadline ? `<span class="task-deadline">${task.deadline}</span>` : ''}
             </div>
             <div class="footer-actions">
-                <button class="action-btn edit-btn" onclick="editTask(${task.id})"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="action-btn edit-btn" onclick="editTask(${task.id},this)"><i class="fa-solid fa-pen-to-square"></i></button>
                 <button class="action-btn done-btn" onclick="markcompleteTask(${task.id}, this)">${task.status === 'completed' ? 'Undo' : 'Mark Done'}</button>
                 <button class="action-btn delete-btn" onclick="deleteTask(${task.id}, this)"><i class="fa-solid fa-trash-can"></i></button>
             </div>
@@ -193,29 +201,122 @@ function onloaddisplaytask(task) {
     taskList.appendChild(card);
 }
 
-function markcompleteTask(taskid, task) {
 
+//logic for task to mark complete
+function markcompleteTask(taskid, task) {
     const current_user = JSON.parse(localStorage.getItem('current_user'));
     if (current_user) {
         const savedTasks = JSON.parse(localStorage.getItem(current_user.s_rollno)) || [];
         if (savedTasks.length > 0) {
             for (let i = 0; i < savedTasks.length; i++) {
                 if (savedTasks[i].id === taskid) {
-                    if(savedTasks[i].status==="pending")
-                      {
-                        savedTasks[i].status="completed"
-                        task.innerText="Undo"
-                      }
-                    else
-                    {
-                        savedTasks[i].status="pending"
-                        task.innerText="Mark Done"
+                    if (savedTasks[i].status === "pending") {
+                        savedTasks[i].status = "completed"
+                        task.innerText = "Undo"
+                    }
+                    else {
+                        savedTasks[i].status = "pending"
+                        task.innerText = "Mark Done"
                     }
                 }
             }
         }
-        localStorage.setItem(current_user.s_rollno,JSON.stringify(savedTasks))
+        localStorage.setItem(current_user.s_rollno, JSON.stringify(savedTasks))
     }
+}
+
+//logic to delete a task which user says
+function deleteTask(taskid, task) {
+    const current_user = JSON.parse(localStorage.getItem('current_user'));
+    const ele = task.closest('.task-card')
+    ele.remove()
+    const savedtasks = JSON.parse(localStorage.getItem(current_user.s_rollno))
+    const newtask = savedtasks.filter(obj => obj.id !== taskid)
+    document.getElementById('task-counter').innerText = newtask.length
+    localStorage.setItem(current_user.s_rollno, JSON.stringify(newtask))
+}
+
+
+function editTask(taskid, task) {
+    console.log(taskid)
+    const current_user = JSON.parse(localStorage.getItem('current_user'))
+    const savedtask = JSON.parse(localStorage.getItem(current_user.s_rollno))
+    document.getElementById('maincontainer').classList.add('blur');
+    document.getElementById('overlay_2').style.display = "flex";
+    for (let i = 0; i< savedtask.length; i++) {
+        if (savedtask[i].id === taskid) {
+            document.getElementById('Task_name').value = savedtask[i].taskname
+            document.getElementById('Task_Description').value = savedtask[i].taskdescription
+            document.getElementById('Dead_line').value = savedtask[i].deadline
+            document.getElementById('Priority_2').checked = savedtask[i].istaskimp
+            sessionStorage.setItem('current_edit_task_id', savedtask[i].id)
+        }
+    }
+}
+function edit_task(event) {
+    event.preventDefault();
+
+    const taskname = document.getElementById('Task_name').value;
+    const taskdescription = document.getElementById('Task_Description').value;
+    const priority_value = document.getElementById('Priority_2').checked;
+    const deadline = document.getElementById('Dead_line').value;
+
+     const taskid = Number(sessionStorage.getItem('current_edit_task_id'));
+    const current_user = JSON.parse(localStorage.getItem('current_user'))
+    const savedtask = JSON.parse(localStorage.getItem(current_user.s_rollno))
+
+    const originalTask = savedtask.find(t => t.id === taskid);
+
+
+    console.log(taskname)
+    // Validation
+    if (!taskname.trim()) {
+        alert("Task title is required");
+        return;
+    }
+
+    if (priority_value && !deadline) {
+        alert("Priority tasks require a deadline for better productivity.");
+        return;
+    }
+
+    //Date Validation
+    if (deadline) {
+        const userDate = new Date(deadline);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (userDate < today && deadline !== originalTask.deadline) {
+        alert("You cannot move a deadline to a past date.");
+        return;
+    }
+
+    }
+
+   
+
+    for (let i = 0; i< savedtask.length; i++) {
+        if (savedtask[i].id === taskid) {
+            console.log(document.getElementById('Task_name').value)
+            savedtask[i].taskname = document.getElementById('Task_name').value
+            savedtask[i].taskdescription = document.getElementById('Task_Description').value
+            savedtask[i].deadline = document.getElementById('Dead_line').value
+            savedtask[i].istaskimp = document.getElementById('Priority_2').checked
+        }
+    }
+    localStorage.setItem(current_user.s_rollno,JSON.stringify(savedtask))
+    sessionStorage.removeItem('current_edit_task_id')
+    document.getElementById('maincontainer').classList.remove('blur');
+    document.getElementById('overlay_2').style.display = "none";
+    const taskList = document.getElementById('taskList');
+    taskList.innerHTML = "";
+    if (current_user) {
+        const savedTasks = JSON.parse(localStorage.getItem(current_user.s_rollno)) || [];
+        if (savedTasks.length > 0) {
+            savedTasks.forEach(t => onloaddisplaytask(t));
+        }
+        document.getElementById('task-counter').innerText = savedTasks.length
+
+}
 }
 window.onload = function () {
 

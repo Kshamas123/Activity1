@@ -81,5 +81,40 @@
             </form>
         </div>
     </div>
+
+    <div class="overlay" id="overlay_2">
+        <div class="form-box">
+            <h2>EDIT TASK</h2>
+            <form id="Form-element">
+                <div class="main-input">
+                    <label for="Task_name">Task Name</label>
+                    <input type="text" id="Task_name" placeholder="E.g. Database Design" required>
+                </div>
+                
+                <div class="main-input">
+                    <label for="Task_Description">Description</label>
+                    <textarea id="Task_Description" rows="3" placeholder="Additional details..."></textarea>
+                </div>
+                
+                <div class="main-input">
+                    <label for="Dead_line">Deadline</label>
+                    <input type="date" id="Dead_line">
+                </div>
+                
+              <div class="main-input toggle-container">
+    <label class="switch">
+        <input type="checkbox" id="Priority_2">
+        <span class="slider"></span>
+    </label>
+    <span class="toggle-label">Mark as Priority Task</span>
+</div>
+                
+                <div class="form-buttons">
+                    <button type="submit" class="btn-submit" onclick="edit_task(event)">Edit Task</button>
+                    <button type="button" class="btn-close" onclick="closeForm(event)">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
