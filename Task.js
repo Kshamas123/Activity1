@@ -318,11 +318,61 @@ function edit_task(event) {
 
 }
 }
+
+function showremainder(tasks)
+{
+   // Only show once per session
+    if (sessionStorage.getItem('notifShown')) return;
+
+    const today = new Date().setHours(0, 0, 0, 0);
+    const urgentTasks = tasks.filter(t => {
+        if (t.status === 'completed' || !t.deadline) return false;
+        const diff = (new Date(t.deadline) - today) / (1000 * 3600 * 24);
+        return diff >= 0 && diff <= 2;
+    });
+
+    if (urgentTasks.length > 0) {
+        // Create the element dynamically
+        const notif = document.createElement('div');
+        notif.className = 'wow-notification';
+        notif.id = 'wow-notif';
+        notif.innerHTML = `
+            <button class="notif-close" onclick="closeNotif()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="notif-content">
+                <div class="notif-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="notif-details">
+                    <h4>Axis Priority Alert</h4>
+                    <p>You have <strong>${urgentTasks.length}</strong> tasks due within 48 hours. Let's get to work!</p>
+                </div>
+            </div>
+            <div class="notif-progress"></div>
+        `;
+
+        document.body.appendChild(notif);
+        notif.style.display = 'block';
+        sessionStorage.setItem('notifShown', 'true');
+
+        // Auto-close after 15 seconds
+        setTimeout(() => {
+            closeNotif();
+        }, 15000);
+    }
+}
+
+function closeNotif() {
+    const notif = document.getElementById('wow-notif');
+    if (notif) {
+        notif.style.animation = "slideInRight 0.5s reverse forwards";
+        setTimeout(() => notif.remove(), 500);
+    }
+
+}
 window.onload = function () {
 
     const current_user = JSON.parse(localStorage.getItem('current_user'));
     if (current_user) {
         const savedTasks = JSON.parse(localStorage.getItem(current_user.s_rollno)) || [];
+        showremainder(savedTasks)
         if (savedTasks.length > 0) {
             savedTasks.forEach(t => onloaddisplaytask(t));
         }

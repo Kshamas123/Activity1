@@ -57,3 +57,4 @@ function renderAnalytics(tasks) {
         }
     });
 }
+

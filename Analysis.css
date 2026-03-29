@@ -1,6 +1,5 @@
 .Analysis-container {
     max-width: 1200px;
-    margin: 40px auto;
     padding: 20px;
 }
 
@@ -8,6 +7,7 @@
     display: grid;
     grid-template-columns: 250px 1fr;
     gap: 30px;
+    
 }
 
 .stats-sidebar {
@@ -47,3 +47,39 @@
     font-weight: 700;
     margin-right: 20px;
 }
+
+
+
+/* Tablet and Mobile Adjustments */
+@media (max-width: 1024px) {
+    .grid-layout {
+        grid-template-columns: 1fr; /* Sidebar moves to top */
+    }
+
+    .stats-sidebar {
+        flex-direction: row; /* Stat cards sit side-by-side */
+        flex-wrap: wrap;
+    }
+
+    .stat-card {
+        flex: 1;
+        min-width: 200px; /* Ensures cards don't get too skinny */
+    }
+}
+
+/* Small Phone Adjustments */
+@media (max-width: 768px) {
+    .charts-main {
+        grid-template-columns: 1fr; /* Charts stack vertically */
+    }
+    
+    .Analysis-container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .stat-card {
+        padding: 15px; /* Saves space on small screens */
+    }
+}
+
